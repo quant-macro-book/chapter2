@@ -11,6 +11,7 @@
 * MATLABではfminsearch、fminbnd、fzeroなどを関数を使っているため、インストールされているライブラリによっては動かない可能性があります。
 * Pythonではnumpy、scipy、matplotlibを呼び出しています。自分で逐一ライブラリをインストールすることも可能ですが、数値計算を行うのであれば[Anaconda](https://www.anaconda.com/)が便利です。
 * Juliaではいくつかのパッケージを利用しています。もし実行できない場合はREPLで`]`を押したのち、`add package name`を実行しインストールしてください。
+* MATLAB,Pythonについては山田知明、Juliaについては鈴木徳馬が作成しています。
 
 #### 未完成
 * **5.2 射影法**用のコードはMatlab,Juliaのみです。
