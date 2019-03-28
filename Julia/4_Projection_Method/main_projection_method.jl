@@ -54,9 +54,10 @@ coef2 = 1.0/(1.0+coef1*(1.0+model.rent));
 a_cfs = coef2*model.grid_w;
 
 #図を描く
-plot(model.grid_w, res[3], color = :blue, marker=:circle, label="Projection")
+plt1 = plot(model.grid_w, res[3], color = :blue, marker=:circle, label="Projection")
 plot!(model.grid_w, a_cfs, color = :red, label="closed form solution" )
 ylims!((0, 0.5))
 xlabel!("income at period 1")
 ylabel!("saving at period 1")
-savefig("Fig2_projection.pdf")
+#savefig("Fig2_projection.pdf")
+display(plt1)

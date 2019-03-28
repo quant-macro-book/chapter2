@@ -1,4 +1,3 @@
-include("MyModule.jl")
 function resid_projection(coef, m)
     """
     選点に基づいてオイラー方程式の残差を返す
@@ -21,13 +20,13 @@ function resid_projection(coef, m)
     resid = similar(mu1) #残差
     for i in 1:ng
         if c1[i] > 0.0
-            mu1[i] = Mymodule.mu_CRRA(c1[i], m.γ)
+            mu1[i] = mu_CRRA(c1[i], m.γ)
         else
             mu1[i] = 10000.0 #負の消費に対するペナルティ
         end
 
         if c2[i] > 0.0
-            mu2[i] = MyModule.mu_CRRA(c2[i], m.γ)
+            mu2[i] = mu_CRRA(c2[i], m.γ)
         else
             mu2[i] = 10000.0 #負の消費に対するペナルティ
         end
