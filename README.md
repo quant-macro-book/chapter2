@@ -15,4 +15,4 @@
 
 #### 未完成
 * **5.2 射影法**用のコードはMatlab,Juliaのみです。
-* FortranとRは3.2節の状態変数と操作変数が共に離散の場合(discretization)のみです。
+* FortranとRは**3.2節の状態変数と操作変数が共に離散の場合**(discretization)のみです。
