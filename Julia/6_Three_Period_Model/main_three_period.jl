@@ -19,13 +19,14 @@ params = calibration()
 
 # 関数を定義する
 """
-ゼロ点探索によって2期間モデルを解く
+ゼロ点探索によって3期間モデルを解く
 
 # インプット
-`m::Models`:パラメータを含む構造体
+`params::Models`: パラメータを含む構造体
 
 # アウトプット
-`a_nl::Vector`:政策関数
+`a1_nl::Vector`: 第1期の政策関数
+`a2_nl::Vector`: 第2期の政策関数
 """
 function three_period_model(params::Models)
 
