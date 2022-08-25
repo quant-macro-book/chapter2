@@ -12,7 +12,7 @@ include("resid_two_period.jl")
 include("MyEconFcn.jl")
 using .MyEconFcn
 
-#自作モジュールの中のパラメータやグリッドを呼び出す
+# パラメータやグリッドを呼び出す
 params = calibration()
 
 # 関数を定義する
