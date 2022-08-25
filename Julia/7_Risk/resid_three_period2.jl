@@ -25,6 +25,6 @@ function resid_three_period2(a3::Float64, a2::Float64, e2::Int64, params::Models
     mu3 = mu_CRRA((1 + params.rent)*a3 + params.y3, params.γ)
 
     # 残差(residual)
-    return params.β*(1.0 + params.rent)*(mu3/mu2) - 1.0
+    return params.β*(1 + params.rent)*(mu3/mu2) - 1.0
 
 end

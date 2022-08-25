@@ -15,7 +15,7 @@ function resid_three_period1(a2::Float64, a1::Float64, e1::Int64, a2_nl::Matrix{
 
     # オイラー方程式の左辺：若年期の限界効用
     # 予算制約の右辺に基づいて手持ちの現金(cash on hand)を定義
-    coh = (1 + params.rent)*a1 + params.y1*params.endow[e1]
+    coh = a1 + params.y1*params.endow[e1]
     if coh - a2 > 0.0 # 消費が正値
         mu1 = mu_CRRA(coh - a2, params.γ)
     else
@@ -25,8 +25,9 @@ function resid_three_period1(a2::Float64, a1::Float64, e1::Int64, a2_nl::Matrix{
     mu2 = zeros(params.ny)
     for i = 1:params.ny
         # 中年期の消費：線形補間：毎回係数を計算するのは時間の無駄なので本当は関数の外に出したほうがよい！
-        interp1 = LinearInterpolation(params.grid_a, a2_nl[:, i])
-        cons = interp1(a1)
+        interp1 = LinearInterpolation(params.grid_a, a2_nl[:, i], extrapolation_bc=Line())
+        a3_approx = interp1(a2)
+        cons = (1 + params.rent)*a2 + params.y2 - a3_approx
 
         # 中年期の限界効用
         mu2[i] = mu_CRRA(cons, params.γ)
@@ -34,6 +35,6 @@ function resid_three_period1(a2::Float64, a1::Float64, e1::Int64, a2_nl::Matrix{
 
     # 残差(residual)
     exp_val = dot(params.tran[e1, :], mu2)
-    return params.β*(1.0 + params.rent)*(exp_val/mu1) - 1.0
+    return params.β*(1 + params.rent)*(exp_val/mu1) - 1.0
 
 end
