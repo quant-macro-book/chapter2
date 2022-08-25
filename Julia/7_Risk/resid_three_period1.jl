@@ -27,7 +27,7 @@ function resid_three_period1(a2::Float64, a1::Float64, e1::Int64, a2_nl::Matrix{
         # 中年期の消費：線形補間：毎回係数を計算するのは時間の無駄なので本当は関数の外に出したほうがよい！
         interp1 = LinearInterpolation(params.grid_a, a2_nl[:, i], extrapolation_bc=Line())
         a3_approx = interp1(a2)
-        cons = (1 + params.rent)*a2 + params.y2 - a3_approx
+        cons = (1 + params.rent)*a2 + params.y2*params.endow[i] - a3_approx
 
         # 中年期の限界効用
         mu2[i] = mu_CRRA(cons, params.γ)
