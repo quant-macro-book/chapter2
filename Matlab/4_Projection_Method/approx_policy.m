@@ -2,17 +2,17 @@ function next_a = approx_policy(coef, eval)
 % Function approx_policy
 %  [next_asset] = approx_policy(coef, eval)
 %
-% –Ú“I:
-% ­ôŠÖ”‚ğ‘½€®‹ß—.
+% ç›®çš„:
+% æ”¿ç­–é–¢æ•°ã‚’å¤šé …å¼è¿‘ä¼¼.
 %
-% ˆø”:
-% coef: ‘½€®‚ÌŒW”theta
-% eval: ‘I“_(collocation)
+% å¼•æ•°:
+% coef: å¤šé …å¼ã®ä¿‚æ•°theta
+% eval: é¸ç‚¹(collocation)
 %
-% –ß‚è’l:
-% next_a: 2Šú‚É‚¨‚¯‚é‘Y…€
+% æˆ»ã‚Šå€¤:
+% next_a: 2æœŸã«ãŠã‘ã‚‹è³‡ç”£æ°´æº–
 %
-% ƒOƒ[ƒoƒ‹•Ï”: dim_app nw
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°: dim_app nw
 
 global dim_app nw
 

@@ -2,25 +2,25 @@ function resid = resid_two_period(a)
 % Function resid_two_period
 %  [residual] = resid_two_period( a )
 %
-% �ړI:
-% 2���ԃ��f���̈�K�����̎c����Ԃ��֐�.
+% 目的:
+% 2期間モデルの一階条件の残差を返す関数.
 %
-% �O���[�o���ϐ�: w, beta, gamma, rent
+% グローバル変数: w, beta, gamma, rent
 
 global w beta gamma rent
 
-% 1���̌��E���p
+% 1期の限界効用
 if w - a > 0.0
     mu1 = mu_CRRA(w - a, gamma);
 else
-    % ������l�̏ꍇ�A�y�i���e�B��^���Ă��̒l���I�΂�Ȃ��悤�ɂ���
+    % 消費が負値の場合、ペナルティを与えてその値が選ばれないようにする
     mu1 = 10000.0;
 end
 
-% 2���̌��E���p
+% 2期の限界効用
 mu2 = mu_CRRA((1.0+rent)*a, gamma);
 
-% �c��
+% 残差
 resid = beta*(1.0+rent)*(mu2/mu1) - 1.0;
 
 return;

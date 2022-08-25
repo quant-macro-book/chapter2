@@ -1,41 +1,41 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% Ë‰e–@‚ğ—p‚¢‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­.
-% ’ˆÓFMatlabŠÖ”"fsolve"‚ğg‚Á‚Ä‚¢‚é‚½‚ßAŠÂ‹«‚É‚æ‚Á‚Ä‚Í“®‚©‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·.
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% å°„å½±æ³•ã‚’ç”¨ã„ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã.
+% æ³¨æ„ï¼šMatlabé–¢æ•°"fsolve"ã‚’ä½¿ã£ã¦ã„ã‚‹ãŸã‚ã€ç’°å¢ƒã«ã‚ˆã£ã¦ã¯å‹•ã‹ãªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™.
 
 clear;
 clear global;
 close all;
 format long;
 
-% ƒOƒ[ƒoƒ‹•Ï”Fapprox_policy.mAresid_projection.m‚Æ•Ï”‚ğ‹¤—L
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ï¼šapprox_policy.mã€resid_projection.mã¨å¤‰æ•°ã‚’å…±æœ‰
 global dim_app nw grid_w beta gamma rent
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.985.^30;     % Š„ˆøˆöq
-gamma = 2.0;           % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x
-rent  = 1.025.^30-1.0; % ƒ—˜q—¦
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.985.^30;     % å‰²å¼•å› å­
+gamma = 2.0;           % ç›¸å¯¾çš„å±é™ºå›é¿åº¦
+rent  = 1.025.^30-1.0; % ç´”åˆ©å­ç‡
 %======================================
 
-% *** ƒpƒ‰ƒ[ƒ^ ***
-nw    =  10;  % Š“¾ƒOƒŠƒbƒh‚Ì”
-w_max = 1.0;  % Š“¾ƒOƒŠƒbƒh‚ÌÅ‘å’l
-w_min = 0.1;  % Š“¾ƒOƒŠƒbƒh‚ÌÅ¬’l
+% *** ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+nw    =  10;  % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+w_max = 1.0;  % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+w_min = 0.1;  % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
 %===========================
 
-%% Ë‰e–@‚Å2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­
+%% å°„å½±æ³•ã§2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã
 
-tic % ŒvZŠÔ‚ğƒJƒEƒ“ƒgŠJn
+tic % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 
 disp(' ');
 disp('-+-+-+- Solve two period model using projection method -+-+-+-');
 
-% ‘I“_(collocation)‚ğŒˆ‚ß‚é
+% é¸ç‚¹(collocation)ã‚’æ±ºã‚ã‚‹
 grid_w = linspace(w_min, w_max, nw)';
 
-% ‘½€®‚ÌŸŒ³‚ğŒˆ’è
+% å¤šé …å¼ã®æ¬¡å…ƒã‚’æ±ºå®š
 dim_app = 1;
 
-% ŒW”‚Ì‰Šú’l‚ğ“–‚Ä„—Ê(initial guess)
+% ä¿‚æ•°ã®åˆæœŸå€¤ã‚’å½“ã¦æ¨é‡(initial guess)
 coef_ini = [0.1, 0.35];
 
 % debug
@@ -44,11 +44,11 @@ coef_ini = [0.1, 0.35];
 % debug
 %resid = resid_projection(coef_ini);
 
-% fsolve‚Ìİ’èF(i)ƒŒ[ƒxƒ“ƒo[ƒOEƒ}ƒ‹ƒJ[ƒg–@‚ğg‚¤A(ii)”½•œ‚ÌÅ‘å‰ñ”‚ğ1000‰ñ‚Éİ’è
+% fsolveã®è¨­å®šï¼š(i)ãƒ¬ãƒ¼ãƒ™ãƒ³ãƒãƒ¼ã‚°ãƒ»ãƒãƒ«ã‚«ãƒ¼ãƒˆæ³•ã‚’ä½¿ã†ã€(ii)åå¾©ã®æœ€å¤§å›æ•°ã‚’1000å›ã«è¨­å®š
 options = optimoptions('fsolve', 'Algorithm', 'levenberg-marquardt', 'MaxFunctionEvaluations', 1000);
 
-% fsolve‚ğg‚Á‚ÄA‘I“_ã‚Åc·‚ªƒ[ƒ‚É‹ß‚­‚È‚éŒW”theta‚ğ’T‚·
-% ’ˆÓFStudent edition‚Å‚Ífsolve‚ª“ü‚Á‚Ä‚¢‚È‚¢‚©‚à’m‚ê‚Ü‚¹‚ñ.
+% fsolveã‚’ä½¿ã£ã¦ã€é¸ç‚¹ä¸Šã§æ®‹å·®ãŒã‚¼ãƒ­ã«è¿‘ããªã‚‹ä¿‚æ•°thetaã‚’æ¢ã™
+% æ³¨æ„ï¼šStudent editionã§ã¯fsolveãŒå…¥ã£ã¦ã„ãªã„ã‹ã‚‚çŸ¥ã‚Œã¾ã›ã‚“.
 coef = fsolve(@resid_projection, coef_ini, options);
 
 disp(' ');
@@ -57,9 +57,9 @@ disp(coef(1));
 disp('approximated psi1');
 disp(coef(2));
 
-toc % ŒvZŠÔ‚ğƒJƒEƒ“ƒgI—¹
+toc % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 
-%% ‰ğÍ“I‰ğ
+%% è§£æçš„è§£
 
 coef1 = (beta*(1+rent))^(-1/gamma);
 coef2 = 1.0/(1.0+coef1*(1+rent));
@@ -73,19 +73,20 @@ disp(icept);
 disp('true psi1');
 disp(slope);
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
-% fsolve‚ğg‚Á‚Ä“¾‚½"coef"‚ğg‚Á‚Ä­ôŠÖ”‚ğŒvZ
+% fsolveã‚’ä½¿ã£ã¦å¾—ãŸ"coef"ã‚’ä½¿ã£ã¦æ”¿ç­–é–¢æ•°ã‚’è¨ˆç®—
 next_a = approx_policy(coef, grid_w);
 
 figure;
-plot(grid_w,next_a,'-o','color','blue','MarkerEdgeColor','b','MarkerSize',12,'linewidth',3);
-xlabel('á”NŠú‚ÌŠ“¾','Fontsize',16);
-ylabel('á”NŠú‚Ì’™’~','Fontsize',16);
+plot(grid_w,next_a,'-o','color','black','MarkerEdgeColor','k','MarkerSize',12,'linewidth',3);
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—','Fontsize',16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„','Fontsize',16);
 xlim([0,w_max]);
 ylim([0,0.5]);
 set(gca,'Fontsize',16);
 grid on;
 saveas (gcf,'Fig2_projection.eps','epsc2');
+saveas (gcf,'Fig2_projection.pdf','pdf');
 
 return;

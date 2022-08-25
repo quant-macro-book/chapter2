@@ -1,52 +1,53 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% ó‘Ô•Ï”‚Æ‘€ì•Ï”‚ğ—£U‰»‚µ‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­.
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% çŠ¶æ…‹å¤‰æ•°ã¨æ“ä½œå¤‰æ•°ã‚’é›¢æ•£åŒ–ã—ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã.
 
 clear;
 clear global;
 close all;
 format short;
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.985.^30;     % Š„ˆøˆöq
-gamma = 2.0;           % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x
-rent  = 1.025.^30-1.0; % ƒ—˜q—¦
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.985.^30;     % å‰²å¼•å› å­
+gamma = 2.0;           % ç›¸å¯¾çš„å±é™ºå›é¿åº¦
+rent  = 1.025.^30-1.0; % ç´”åˆ©å­ç‡
 %======================================
 
-% *** ƒpƒ‰ƒ[ƒ^ ***
-nw    =  10;   % Š“¾ƒOƒŠƒbƒh‚Ì”
-w_max = 1.0;   % Š“¾ƒOƒŠƒbƒh‚ÌÅ‘å’l
-w_min = 0.1;   % Š“¾ƒOƒŠƒbƒh‚ÌÅ¬’l
-na    =  40;   % ’™’~ƒOƒŠƒbƒh‚Ì”
-a_max = 1.0;   % ’™’~ƒOƒŠƒbƒh‚ÌÅ‘å’l
-a_min = 0.025; % ’™’~ƒOƒŠƒbƒh‚ÌÅ¬’l
+% *** ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+nw    =  10;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+w_max = 1.0;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+w_min = 0.1;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
+na    =  40;   % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+a_max = 1.0;   % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+a_min = 0.025; % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
 %==================================
 
-tic % ŒvZŠÔ‚ğƒJƒEƒ“ƒgŠJn
+tic % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 
 disp(' ');
 disp('-+-+-+- Solve two period model using discretization -+-+-+-');
 
-%% ƒOƒŠƒbƒhƒ|ƒCƒ“ƒg‚ğŒvZ
+%% ã‚°ãƒªãƒƒãƒ‰ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—
 
 grid_w = linspace(w_min, w_max, nw)';
 grid_a = linspace(a_min, a_max, na)';
 
 
-%% 2Šú‚ÌŒø—pŠÖ”‚ğƒvƒƒbƒg‚µ‚Ä‚İ‚é(ÅI“I‚ÈŒ‹‰Ê‚É‚Í•s—v‚ÈŒvZ)
+%% 2æœŸã®åŠ¹ç”¨é–¢æ•°ã‚’ãƒ—ãƒ­ãƒƒãƒˆã—ã¦ã¿ã‚‹(æœ€çµ‚çš„ãªçµæœã«ã¯ä¸è¦ãªè¨ˆç®—)
 
-util2 = beta.*CRRA((1.0+rent).*grid_a, gamma);
+util2 = CRRA((1.0+rent).*grid_a, gamma);
 
-% Œø—pŠÖ”‚Ì}‚ğ•`‚­
+% åŠ¹ç”¨é–¢æ•°ã®å›³ã‚’æã
 figure;
-plot(grid_a,util2,'-o','color','blue','MarkerEdgeColor','b','MarkerSize',12,'linewidth',3);
-xlabel('˜V”NŠú‚Ì‘Y','Fontsize',16);
-ylabel('˜V”NŠú‚ÌŒø—p','Fontsize',16);
+plot(grid_a,util2,'-o','color','black','MarkerEdgeColor','k','MarkerSize',12,'linewidth',3);
+xlabel('è€å¹´æœŸã®è³‡ç”£','Fontsize',16);
+ylabel('è€å¹´æœŸã®åŠ¹ç”¨','Fontsize',16);
 xlim([a_min,a_max]);
 set(gca,'Fontsize',16);
 grid on;
-saveas (gcf,'Fig2_utility_at_period2.eps','epsc2');
+saveas (gcf, 'Fig2_utility_at_period2.eps', 'epsc2');
+saveas (gcf, 'Fig2_utility_at_period2.pdf', 'pdf');
 
-%% ‚ ‚ç‚ä‚é(w,a)‚Ì‘g‚İ‡‚í‚¹‚É‚Â‚¢‚Ä¶ŠUŒø—p‚ğŒvZ
+%% ã‚ã‚‰ã‚†ã‚‹(w,a)ã®çµ„ã¿åˆã‚ã›ã«ã¤ã„ã¦ç”Ÿæ¶¯åŠ¹ç”¨ã‚’è¨ˆç®—
 
 obj = zeros(na, nw);
 
@@ -56,47 +57,49 @@ for i = 1:nw
         if cons > 0.0
             obj(j, i) = CRRA(cons, gamma) + beta*CRRA((1.0+rent)*grid_a(j), gamma);
         else
-            % Á”ï‚ª•‰’l‚Ìê‡Aƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+            % æ¶ˆè²»ãŒè² å€¤ã®å ´åˆã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
             obj(j, i) = -10000.0;
         end
     end
 end
 
-%% Œø—p‚ğÅ‘å‚É‚·‚é‘€ì•Ï”‚ğ’T‚µo‚·F­ôŠÖ”
+%% åŠ¹ç”¨ã‚’æœ€å¤§ã«ã™ã‚‹æ“ä½œå¤‰æ•°ã‚’æ¢ã—å‡ºã™ï¼šæ”¿ç­–é–¢æ•°
 
 pol = zeros(nw,1);
 
-% Šew‚É‚Â‚¢‚Ä¶ŠUŒø—p‚ğÅ‘å‚É‚·‚éa‚ğ’T‚·
+% å„wã«ã¤ã„ã¦ç”Ÿæ¶¯åŠ¹ç”¨ã‚’æœ€å¤§ã«ã™ã‚‹aã‚’æ¢ã™
 for i = 1:nw
     [maxv, maxl] = max(obj(:,i));
     pol(i) = grid_a(maxl);
 end
 
-toc % ŒvZŠÔ‚ğƒJƒEƒ“ƒgI—¹
+toc % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
 figure;
-plot(grid_a,obj(:, 5), '-o', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_a,obj(:, 8), '-.^', 'color', 'green', 'MarkerEdgeColor', 'g', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a,obj(:, 10), '--s', 'color', 'red', 'MarkerEdgeColor', 'r', 'MarkerSize', 12, 'linewidth', 3); hold('off');
-xlabel('á”NŠú‚Ì’™’~(˜V”NŠú‚Ì‘Y)Fa', 'Fontsize', 16);
-ylabel('¶ŠUŒø—pFU(c_{1},c_{2})', 'Fontsize', 16);
+plot(grid_a,obj(:, 5), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a,obj(:, 8), '-.^', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a,obj(:, 10), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+xlabel('è‹¥å¹´æœŸã®è²¯è“„(è€å¹´æœŸã®è³‡ç”£)ï¼ša', 'Fontsize', 16);
+ylabel('ç”Ÿæ¶¯åŠ¹ç”¨ï¼šU(c_{1},c_{2})', 'Fontsize', 16);
 xlim([0.0, a_max]);
 ylim([-10.0, 0.0]);
 set(gca,'Fontsize', 16);
 legend('w=0.5', 'w=0.8', 'w=1.0', 'Location', 'NorthEast');
 grid on;
-saveas (gcf,'Fig2_utility_max.eps','epsc2');
+saveas (gcf, 'Fig2_utility_max.eps', 'epsc2');
+saveas (gcf, 'Fig2_utility_max.pdf', 'pdf');
 
 figure;
-plot(grid_w,pol, '-o', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('á”NŠú‚ÌŠ“¾Fw', 'Fontsize', 16);
-ylabel('á”NŠú‚Ì’™’~Fa', 'Fontsize', 16);
+plot(grid_w,pol, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—ï¼šw', 'Fontsize', 16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„ï¼ša', 'Fontsize', 16);
 xlim([0, 1]);
 ylim([0, 0.5]);
 set(gca, 'Fontsize', 16);
 grid on;
-saveas (gcf,'Fig2_pol_discr.eps','epsc2');
+saveas (gcf, 'Fig2_pol_discr.eps', 'epsc2');
+saveas (gcf, 'Fig2_pol_discr.pdf', 'pdf');
 
 return;

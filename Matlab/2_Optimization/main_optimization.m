@@ -1,99 +1,102 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% Å“K‰»(Å¬‰»)ŠÖ”‚ğ—˜—p‚µ‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­.
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% æœ€é©åŒ–(æœ€å°åŒ–)é–¢æ•°ã‚’åˆ©ç”¨ã—ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã.
 
 clear;
 clear global;
 close all;
 format short;
 
-% ƒOƒ[ƒoƒ‹•Ï”Fobj_two_period.m‚Æ•Ï”‚ğ‹¤—L
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ï¼šobj_two_period.mã¨å¤‰æ•°ã‚’å…±æœ‰
 global w beta gamma rent
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.985.^30;     % Š„ˆøˆöq
-gamma = 2.0;           % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x
-rent  = 1.025.^30-1.0; % ƒ—˜q—¦
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.985.^30;     % å‰²å¼•å› å­
+gamma = 2.0;           % ç›¸å¯¾çš„å±é™ºå›é¿åº¦
+rent  = 1.025.^30-1.0; % ç´”åˆ©å­ç‡
 %======================================
 
-% *** ƒpƒ‰ƒ[ƒ^ ***
-nw    =  10; % Š“¾ƒOƒŠƒbƒh‚Ì”
-w_max = 1.0; % Š“¾ƒOƒŠƒbƒh‚ÌÅ‘å’l
-w_min = 0.1; % Š“¾ƒOƒŠƒbƒh‚ÌÅ¬’l
+% *** ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+nw    =  10; % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+w_max = 1.0; % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+w_min = 0.1; % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
 %================================
 
-%% Å“K‰»ŠÖ”‚ğg‚Á‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­
+%% æœ€é©åŒ–é–¢æ•°ã‚’ä½¿ã£ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã
 
-tic % ŒvZŠÔ‚ğƒJƒEƒ“ƒgŠJn
+tic % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 
 disp(' ');
 disp('-+-+-+- Solve two period model using optimization -+-+-+-');
 
-% ƒOƒŠƒbƒhƒ|ƒCƒ“ƒg‚ğŒvZ
+% ã‚°ãƒªãƒƒãƒ‰ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—
 grid_w = linspace(w_min, w_max, nw)';
 
-%% fminbnd(Å“K‰»ŠÖ”‚Ìˆê‚Â)‚ğg‚Á‚ÄŒø—pÅ‘å‰»–â‘è‚ğ‰ğ‚­
+%% fminbnd(æœ€é©åŒ–é–¢æ•°ã®ä¸€ã¤)ã‚’ä½¿ã£ã¦åŠ¹ç”¨æœ€å¤§åŒ–å•é¡Œã‚’è§£ã
 
 a_gs = zeros(nw,1);
 
-% Šew‚É‚Â‚¢‚Ä–Ú“IŠÖ”(obj_two_period.m‚ğÅ‘å‚É‚·‚éa‚ğ’T‚·)
+% å„wã«ã¤ã„ã¦ç›®çš„é–¢æ•°(obj_two_period.mã‚’æœ€å¤§ã«ã™ã‚‹aã‚’æ¢ã™)
 for i = 1:nw
     w = grid_w(i);
-    % w*0.01‚Æw*2.0‚Í’T‚·‹æŠÔ‚Ì”ÍˆÍFÚ×‚Í"help fminbnd"
+    % w*0.01ã¨w*2.0ã¯æ¢ã™åŒºé–“ã®ç¯„å›²ï¼šè©³ç´°ã¯"help fminbnd"
     [a_gs(i), fval] = fminbnd(@obj_two_period, w*0.01, w*2.0);
 end
 
-toc % ŒvZŠÔ‚ğƒJƒEƒ“ƒgI—¹
+toc % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 
-%% fminsearch(Å“K‰»ŠÖ”‚Ìˆê‚Â)‚ğg‚Á‚ÄŒø—pÅ‘å‰»–â‘è‚ğ‰ğ‚­
+%% fminsearch(æœ€é©åŒ–é–¢æ•°ã®ä¸€ã¤)ã‚’ä½¿ã£ã¦åŠ¹ç”¨æœ€å¤§åŒ–å•é¡Œã‚’è§£ã
 
 a_ss = zeros(nw,1);
 
 for i = 1:nw
     w = grid_w(i);
-    % 0.0‚Í‰Šú’lFÚ×‚Í"help fminsearch"
-    [a_ss(i), fval] = fminsearch( @obj_two_period, 0.0);
+    % 0.0ã¯åˆæœŸå€¤ï¼šè©³ç´°ã¯"help fminsearch"
+    [a_ss(i), fval] = fminsearch(@obj_two_period, 0.0);
 end
 
-toc % ŒvZŠÔ‚ğƒJƒEƒ“ƒgI—¹
+toc % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
 figure;
-plot(grid_w, a_gs, '-o', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_w, a_ss, '--d', 'color', 'red', 'MarkerEdgeColor', 'r', 'MarkerSize', 12, 'linewidth', 3); hold('off');
-xlabel('á”NŠú‚ÌŠ“¾Fw', 'Fontsize', 16);
-ylabel('á”NŠú‚Ì’™’~Fa', 'Fontsize', 16);
+plot(grid_w, a_gs, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_w, a_ss, '--d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—ï¼šw', 'Fontsize', 16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„ï¼ša', 'Fontsize', 16);
 xlim([0, w_max]);
 ylim([0, 0.5]);
 legend('fminbnd','fminsearch','Location','NorthWest');
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf, 'Fig2_optimization_comp.eps', 'epsc2');
+saveas (gcf, 'Fig2_optimization_comp.pdf', 'pdf');
 
 figure;
-plot(grid_w, a_ss, '-o', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('á”NŠú‚ÌŠ“¾Fw', 'Fontsize', 16);
-ylabel('á”NŠú‚Ì’™’~Fa', 'Fontsize', 16);
+plot(grid_w, a_ss, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—ï¼šw', 'Fontsize', 16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„ï¼ša', 'Fontsize', 16);
 xlim([0, w_max]);
 ylim([0, 0.5]);
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf, 'Fig2_optimization.eps', 'epsc2');
+saveas (gcf, 'Fig2_optimization.pdf', 'pdf');
 
-%% ‰ğÍ“I‰ğ
+%% è§£æçš„è§£
 
 coef1 = (beta*(1+rent))^(-1./gamma);
 coef2 = 1.0/(1.0+coef1*(1+rent));
 a_cfs = coef2.*grid_w;
 
 figure;
-plot(grid_w, a_cfs, '-', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('á”NŠú‚ÌŠ“¾', 'Fontsize', 16);
-ylabel('á”NŠú‚Ì’™’~', 'Fontsize', 16);
+plot(grid_w, a_cfs, '-', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—', 'Fontsize', 16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„', 'Fontsize', 16);
 xlim([w_min, w_max]);
 ylim([0, 0.5]);
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_closed_form.eps','epsc2');
+saveas (gcf,'Fig2_closed_form.pdf','pdf');
 
 return;

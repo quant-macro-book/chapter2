@@ -2,25 +2,25 @@ function value = obj_two_period(a)
 % Function obj_two_period
 %  [utility] = obj_two_period(a)
 %
-% –Ú“I:
-% Š“¾w‚ğŠ—^‚Æ‚µ‚ÄA2ŠúŠÔƒ‚ƒfƒ‹‚Ì¶ŠUŒø—p‚Ì’l‚ğ•Ô‚·ŠÖ”.
+% ç›®çš„:
+% æ‰€å¾—wã‚’æ‰€ä¸ã¨ã—ã¦ã€2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã®ç”Ÿæ¶¯åŠ¹ç”¨ã®å€¤ã‚’è¿”ã™é–¢æ•°.
 %
-% ƒOƒ[ƒoƒ‹•Ï”: w, beta, gamma, rent
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°: w, beta, gamma, rent
 
 global w beta gamma rent
 
-% 1Šú‚ÌŒø—p…€
+% 1æœŸã®åŠ¹ç”¨æ°´æº–
 if w - a > 0.0
     util_y = CRRA(w - a, gamma);
 else
-    % Á”ï‚ª•‰’l‚Ìê‡Aƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+    % æ¶ˆè²»ãŒè² å€¤ã®å ´åˆã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
     util_y = -1000000.0;
 end
 
-% 2Šú‚ÌŒø—p…€
+% 2æœŸã®åŠ¹ç”¨æ°´æº–
 util_o = beta*CRRA((1.0+rent)*a, gamma);
 
-% fminbnd‚Æfminsearch‚Í‹¤‚É"Å¬’l"‚ğ’T‚·‚½‚ßAƒ}ƒCƒiƒX‚ğ‚©‚¯‚Ä”½“]‚³‚¹‚é
+% fminbndã¨fminsearchã¯å…±ã«"æœ€å°å€¤"ã‚’æ¢ã™ãŸã‚ã€ãƒã‚¤ãƒŠã‚¹ã‚’ã‹ã‘ã¦åè»¢ã•ã›ã‚‹
 value = -1.0*(util_y + util_o);
 
 return;

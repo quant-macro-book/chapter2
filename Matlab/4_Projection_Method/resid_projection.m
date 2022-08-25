@@ -2,43 +2,43 @@ function resid = resid_projection(coef)
 % Function resid_projection
 %  [residual] = resid_projection(coef)
 %
-% –Ú“I:
-% ‘I“_(collocation)‚ÉŠî‚Ã‚¢‚ÄAƒIƒCƒ‰[•û’ö®‚Ìc·‚ğ•Ô‚·ŠÖ”.
+% ç›®çš„:
+% é¸ç‚¹(collocation)ã«åŸºã¥ã„ã¦ã€ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã®æ®‹å·®ã‚’è¿”ã™é–¢æ•°.
 %
-% ˆø”:
-% ‘½€®‚ÌŒW”theta: 1 x 2
+% å¼•æ•°:
+% å¤šé …å¼ã®ä¿‚æ•°theta: 1 x 2
 %
-% –ß‚è’l:
+% æˆ»ã‚Šå€¤:
 % residual: nw x 1
 %
-% ƒOƒ[ƒoƒ‹•Ï”: w, beta, gamma, rent
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°: w, beta, gamma, rent
 
 global grid_w beta gamma rent
 
-% ŒW”theta‚ğg‚Á‚Ä­ôŠÖ”‚ğŒvZ
+% ä¿‚æ•°thetaã‚’ä½¿ã£ã¦æ”¿ç­–é–¢æ•°ã‚’è¨ˆç®—
 a = approx_policy(coef, grid_w);
 
-% Šew‚É‚¨‚¯‚é1Šú‚ÌÁ”ï…€‚ğŒvZ
+% å„wã«ãŠã‘ã‚‹1æœŸã®æ¶ˆè²»æ°´æº–ã‚’è¨ˆç®—
 c1 = grid_w - a;
 
 [r,c] = size(c1);
 ng    = max(r,c);
 
-% 1Šú‚É‚¨‚¯‚éŒÀŠEŒø—p
+% 1æœŸã«ãŠã‘ã‚‹é™ç•ŒåŠ¹ç”¨
 mu1 = zeros(ng,1);
 for i = 1:ng
     if c1(i) > 0.0
         mu1(i) = mu_CRRA(c1(i), gamma);
     else
-        % Á”ï‚ª•‰’l‚Ìê‡Aƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+        % æ¶ˆè²»ãŒè² å€¤ã®å ´åˆã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
         mu1(i) = 10000.0;
     end
 end
 
-% 2Šú‚ÌÁ”ï…€
+% 2æœŸã®æ¶ˆè²»æ°´æº–
 c2 = (1.0+rent).*a;
 
-% 2Šú‚É‚¨‚¯‚éŒÀŠEŒø—p
+% 2æœŸã«ãŠã‘ã‚‹é™ç•ŒåŠ¹ç”¨
 mu2 = zeros(ng,1);
 for i = 1:ng
     if c2(i) > 0.0
@@ -48,8 +48,7 @@ for i = 1:ng
     end
 end
 
-% c·
+% æ®‹å·®
 resid = beta*(1.0+rent)*(mu2./mu1) - 1.0;
 
 return;
-

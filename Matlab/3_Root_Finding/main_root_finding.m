@@ -1,40 +1,40 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% ”ñüŒ`ŠÖ”‚Ìª‚ğ‹‚ß‚éŠÖ”‚ğ—˜—p‚µ‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­.
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% éç·šå½¢é–¢æ•°ã®æ ¹ã‚’æ±‚ã‚ã‚‹é–¢æ•°ã‚’åˆ©ç”¨ã—ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã.
 
 clear;
 clear global;
 close all;
 format short;
 
-% ƒOƒ[ƒoƒ‹•Ï”Fresid_two_period.m‚Æ•Ï”‚ğ‹¤—L
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ï¼šresid_two_period.mã¨å¤‰æ•°ã‚’å…±æœ‰
 global w beta gamma rent
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.985.^30;     % Š„ˆøˆöq
-gamma = 2.0;           % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x
-rent  = 1.025.^30-1.0; % ƒ—˜q—¦
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.985.^30;     % å‰²å¼•å› å­
+gamma = 2.0;           % ç›¸å¯¾çš„å±é™ºå›é¿åº¦
+rent  = 1.025.^30-1.0; % ç´”åˆ©å­ç‡
 %======================================
 
-% *** ƒpƒ‰ƒ[ƒ^ ***
-nw    =  10;   % Š“¾ƒOƒŠƒbƒh‚Ì”
-w_max = 1.0;   % Š“¾ƒOƒŠƒbƒh‚ÌÅ‘å’l
-w_min = 0.1;   % Š“¾ƒOƒŠƒbƒh‚ÌÅ¬’l
-na    =  40;   % ’™’~ƒOƒŠƒbƒh‚Ì”
-a_max = 1.0;   % ’™’~ƒOƒŠƒbƒh‚ÌÅ‘å’l
-a_min = 0.025; % ’™’~ƒOƒŠƒbƒh‚ÌÅ¬’l
+% *** ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+nw    =  10;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+w_max = 1.0;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+w_min = 0.1;   % æ‰€å¾—ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
+na    =  40;   % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+a_max = 1.0;   % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+a_min = 0.025; % è²¯è“„ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤
 %==================================
 
-%% ‹ªƒAƒ‹ƒSƒŠƒYƒ€‚ğg‚Á‚Ä2ŠúŠÔƒ‚ƒfƒ‹‚ğ‰ğ‚­
+%% æ±‚æ ¹ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã‚’ä½¿ã£ã¦2æœŸé–“ãƒ¢ãƒ‡ãƒ«ã‚’è§£ã
 
-tic % ŒvZŠÔ‚ğƒJƒEƒ“ƒgŠJn
+tic % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 
 disp(' ');
 disp('-+-+-+- Solve two period model using nonlinear equation solver -+-+-+-');
 
-% ƒOƒŠƒbƒhƒ|ƒCƒ“ƒg‚ğŒvZ
+% ã‚°ãƒªãƒƒãƒ‰ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—
 grid_w = linspace(w_min, w_max, nw)';
 
-%% c·‚ğƒvƒƒbƒg‚µ‚Ä‚İ‚é(ÅI“I‚ÈŒ‹‰Ê‚É‚Í•s—v‚ÈŒvZ)F}3
+%% æ®‹å·®ã‚’ãƒ—ãƒ­ãƒƒãƒˆã—ã¦ã¿ã‚‹(æœ€çµ‚çš„ãªçµæœã«ã¯ä¸è¦ãªè¨ˆç®—)ï¼šå›³3
 
 grid_a = linspace(a_min, a_max, na)';
 
@@ -63,41 +63,43 @@ end
 grid_zero = zeros(na,1);
 
 figure;
-plot(grid_a, resid1, '-', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_a, resid2, '-.', 'color', 'green', 'MarkerEdgeColor', 'g', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a, resid3, '--', 'color', 'red', 'MarkerEdgeColor', 'r', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, resid1, '-', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a, resid2, '-.', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, resid3, '--', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
 plot(grid_a, grid_zero,'-', 'color', 'black', 'linewidth', 1); hold('off');
-xlabel('á”NŠú‚Ì’™’~Fa', 'Fontsize', 16);
-ylabel('c·FR(w)', 'Fontsize', 16);
+xlabel('è‹¥å¹´æœŸã®è²¯è“„ï¼ša', 'Fontsize', 16);
+ylabel('æ®‹å·®ï¼šR(w)', 'Fontsize', 16);
 xlim([0.1, 0.5]);
 ylim([-1, 1]);
 legend('w=0.5', 'w=0.8', 'w=1', 'Location', 'NorthEast');
 set(gca,'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_resid.eps','epsc2');
+saveas (gcf,'Fig2_resid.pdf','pdf');
 
-%% ”ñüŒ`ŠÖ”‚Ìª‚ğ’T‚·ŠÖ”‚ğ—p‚¢‚Äc·‚ğƒ[ƒ‚É‚·‚éa‚ğ’T‚·
+%% éç·šå½¢é–¢æ•°ã®æ ¹ã‚’æ¢ã™é–¢æ•°ã‚’ç”¨ã„ã¦æ®‹å·®ã‚’ã‚¼ãƒ­ã«ã™ã‚‹aã‚’æ¢ã™
 
 a_nl = zeros(nw,1);
 
 for i = 1:nw
     w = grid_w(i);
-    % 0.1‚Í‰Šú’lFÚ×‚Í"help fzero"
+    % 0.1ã¯åˆæœŸå€¤ï¼šè©³ç´°ã¯"help fzero"
     a_nl(i) = fzero(@resid_two_period, 0.01);
 end
 
-toc % ŒvZŠÔ‚ğƒJƒEƒ“ƒgI—¹
+toc % è¨ˆç®—æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
 figure;
-plot(grid_w, a_nl, '-o', 'color', 'blue', 'MarkerEdgeColor', 'b', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('á”NŠú‚ÌŠ“¾Fw', 'Fontsize', 16);
-ylabel('á”NŠú‚Ì’™’~Fa', 'Fontsize', 16);
+plot(grid_w, a_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('è‹¥å¹´æœŸã®æ‰€å¾—ï¼šw', 'Fontsize', 16);
+ylabel('è‹¥å¹´æœŸã®è²¯è“„ï¼ša', 'Fontsize', 16);
 xlim([0, w_max]);
 ylim([0, 0.5]);
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_fzero.eps','epsc2');
+saveas (gcf,'Fig2_fzero.pdf','pdf');
 
 return;
