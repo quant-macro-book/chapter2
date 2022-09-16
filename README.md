@@ -2,19 +2,27 @@
 
 ## 第2章：2期間モデルと数値計算の概観
 
-* Juliaを初めて使う人は、是非、順番に読むようにしてください。モデルを解くために必要になる知識をステップ・バイ・ステップで説明をしながら、講義形式で計算していっています(実際に講義でも使っていました)。
-  * Tipsを読みながら勉強してください。
+### Julia
+* Juliaを初めて使う人は、是非、Jupyter Notebookを順番に読むようにしてください。
+  * モデルを解くために必要になる知識をステップ・バイ・ステップで説明をしながら、講義形式でコードを実行します。
+  * Tipsとして、Juliaの仕様についても、簡単に説明をしています。
+  * Jupyter Notebookを開くのが大変な人に向けて、HTML版も用意してあります。ただし、こちらは内容を読むだけで実行は出来ません。
 * ある程度Juliaコードの解読に自信がある人には、Jupyter Notebookはやや冗長に感じるかもしれないので、`XX.jl`というJuliaコードを直接読むことをお勧めします。
+  * 内容はJupyter Notebookとまったく同じです。
 
-* **3.2 状態変数と操作変数が共に離散の場合**の結果を再現するファイル -> main_discretization.、CRRA.m
-* **4. 操作変数を連続にする：最適化**の結果を再現するファイル -> main_optimization.m、obj_two_period.m、CRRA.m
-* **5.1 非線形方程式のゼロ点を探す**の結果を再現するファイル -> main_root_finding.m、resid_two_period.m、mu_CRRA.m
-* **5.2 射影法**の結果を再現するファイル -> main_projection_method.m、resid_projection.m、approx_policy.m、mu_CRRA.m
+### MATLAB
+* 各節のコードを順番に置いてあります。
+
+### Python
+* Juliaと同じく、Jupyter Notebookで丁寧に説明をしています。
+
+### Fortran&R
+* 2.4節で解説をしたグリッドサーチ用コードのみ
+
 
 ## 注意
-* 書籍のすべての結果について、MATLABとJuliaで再現をすることが可能です。
-  * Pythonでは一部、書けている箇所があります。これはPythonでは再現ができないという訳ではありません。
+* 書籍のすべての結果について、JuliaとMATLAB、Pythonで再現をすることが可能です。
   * FortranとRはグリッドサーチのみです。
 * MATLABではfminsearch、fminbnd、fzeroなどの関数を使っているため、インストールされているライブラリによっては動かない可能性があります。
-* Pythonではnumpy、scipy、matplotlibを呼び出しています。Anaconda経由でPythonを利用していれば。
-* Juliaではいくつかのパッケージを利用しています。もし実行できない場合はREPLで`]`を押したのち、`add package name`を実行しインストールしてください。
+* Pythonではnumpy、scipy、matplotlibを呼び出しています。
+* Juliaではいくつかのパッケージを利用しています。もし実行できない場合はREPLで`]`を押したのち、`add package name`を実行してインストールしてください。
