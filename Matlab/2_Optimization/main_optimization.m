@@ -59,12 +59,12 @@ toc % 計算時間をカウント終了
 %% 図を描く
 
 figure;
-plot(grid_w, a_gs, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_w, a_ss, '--d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+plot(grid_w, a_gs, '-o', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_w, a_ss, '--d', 'MarkerSize', 12, 'linewidth', 3); hold('off');
 xlabel('若年期の所得：w', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a', 'Fontsize', 16);
 xlim([0, w_max]);
-ylim([0, 0.5]);
+ylim([0, 0.4]);
 legend('fminbnd','fminsearch','Location','NorthWest');
 set(gca, 'Fontsize', 16);
 grid on;
@@ -72,15 +72,39 @@ saveas (gcf, 'Fig2_optimization_comp.eps', 'epsc2');
 saveas (gcf, 'Fig2_optimization_comp.pdf', 'pdf');
 
 figure;
-plot(grid_w, a_ss, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_w, a_ss, '-o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('若年期の所得：w', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a', 'Fontsize', 16);
 xlim([0, w_max]);
-ylim([0, 0.5]);
+ylim([0, 0.4]);
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf, 'Fig2_optimization.eps', 'epsc2');
 saveas (gcf, 'Fig2_optimization.pdf', 'pdf');
+
+figure;
+plot(grid_w, a_gs, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_w, a_ss, '--d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, w_max]);
+ylim([0, 0.4]);
+legend('fminbnd','fminsearch','Location','NorthWest');
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf, 'Fig2_optimization_comp_bk.eps', 'epsc2');
+saveas (gcf, 'Fig2_optimization_comp_bk.pdf', 'pdf');
+
+figure;
+plot(grid_w, a_ss, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, w_max]);
+ylim([0, 0.4]);
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf, 'Fig2_optimization_bk.eps', 'epsc2');
+saveas (gcf, 'Fig2_optimization_bk.pdf', 'pdf');
 
 %% 解析的解
 
@@ -89,14 +113,25 @@ coef2 = 1.0/(1.0+coef1*(1+rent));
 a_cfs = coef2.*grid_w;
 
 figure;
+plot(grid_w, a_cfs, '-', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の所得', 'Fontsize', 16);
+ylabel('若年期の貯蓄', 'Fontsize', 16);
+xlim([w_min, w_max]);
+ylim([0, 0.4]);
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_closed_form_bk.eps','epsc2');
+saveas (gcf,'Fig2_closed_form_bk.pdf','pdf');
+
+figure;
 plot(grid_w, a_cfs, '-', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('若年期の所得', 'Fontsize', 16);
 ylabel('若年期の貯蓄', 'Fontsize', 16);
 xlim([w_min, w_max]);
-ylim([0, 0.5]);
+ylim([0, 0.4]);
 set(gca, 'Fontsize', 16);
 grid on;
-saveas (gcf,'Fig2_closed_form.eps','epsc2');
-saveas (gcf,'Fig2_closed_form.pdf','pdf');
+saveas (gcf,'Fig2_closed_form_bk.eps','epsc2');
+saveas (gcf,'Fig2_closed_form_bk.pdf','pdf');
 
 return;

@@ -38,7 +38,7 @@ util2 = CRRA((1.0+rent).*grid_a, gamma);
 
 % 効用関数の図を描く
 figure;
-plot(grid_a,util2,'-o','color','black','MarkerEdgeColor','k','MarkerSize',12,'linewidth',3);
+plot(grid_a,util2,'-o','MarkerSize',12,'linewidth',3);
 xlabel('老年期の資産','Fontsize',16);
 ylabel('老年期の効用','Fontsize',16);
 xlim([a_min,a_max]);
@@ -78,11 +78,11 @@ toc % 計算時間をカウント終了
 %% 図を描く
 
 figure;
-plot(grid_a,obj(:, 5), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_a,obj(:, 8), '-.^', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a,obj(:, 10), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+plot(grid_a,obj(:, 5), '-o', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a,obj(:, 8), '-.^', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a,obj(:, 10), '--s', 'MarkerSize', 12, 'linewidth', 3); hold('off');
 xlabel('若年期の貯蓄(老年期の資産)：a', 'Fontsize', 16);
-ylabel('生涯効用：U(c_{1},c_{2})', 'Fontsize', 16);
+ylabel('生涯効用', 'Fontsize', 16);
 xlim([0.0, a_max]);
 ylim([-10.0, 0.0]);
 set(gca,'Fontsize', 16);
@@ -92,14 +92,40 @@ saveas (gcf, 'Fig2_utility_max.eps', 'epsc2');
 saveas (gcf, 'Fig2_utility_max.pdf', 'pdf');
 
 figure;
-plot(grid_w,pol, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_w,pol, '-o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('若年期の所得：w', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a', 'Fontsize', 16);
 xlim([0, 1]);
-ylim([0, 0.5]);
+ylim([0, 0.4]);
 set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf, 'Fig2_pol_discr.eps', 'epsc2');
 saveas (gcf, 'Fig2_pol_discr.pdf', 'pdf');
+
+% 白黒
+figure;
+plot(grid_a,obj(:, 5), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a,obj(:, 8), '-.^', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a,obj(:, 10), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+xlabel('若年期の貯蓄(老年期の資産)：a', 'Fontsize', 16);
+ylabel('生涯効用', 'Fontsize', 16);
+xlim([0.0, a_max]);
+ylim([-10.0, 0.0]);
+set(gca,'Fontsize', 16);
+legend('w=0.5', 'w=0.8', 'w=1.0', 'Location', 'NorthEast');
+grid on;
+saveas (gcf, 'Fig2_utility_max_bk.eps', 'epsc2');
+saveas (gcf, 'Fig2_utility_max_bk.pdf', 'pdf');
+
+figure;
+plot(grid_w,pol, '-o', 'color', 'black', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, 1]);
+ylim([0, 0.4]);
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf, 'Fig2_pol_discr_bk.eps', 'epsc2');
+saveas (gcf, 'Fig2_pol_discr_bk.pdf', 'pdf');
 
 return;

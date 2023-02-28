@@ -62,7 +62,7 @@ toc % 計算時間をカウント終了
 %% 図を描く
 
 figure;
-plot(grid_a, a2_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a2_nl, '-o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('中年期の資産：a2', 'Fontsize', 16);
 ylabel('中年期の貯蓄：a3', 'Fontsize', 16);
 xlim([0.0, 2.0]);
@@ -73,7 +73,18 @@ saveas (gcf,'Fig2_pol_three_period23.eps','epsc2');
 saveas (gcf,'Fig2_pol_three_period23.pdf','pdf');
 
 figure;
-plot(grid_a, a1_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a2_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('中年期の資産：a2', 'Fontsize', 16);
+ylabel('中年期の貯蓄：a3', 'Fontsize', 16);
+xlim([0.0, 2.0]);
+ylim([0.0, 2.0]);
+set(gca,'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_pol_three_period23_bk.eps','epsc2');
+saveas (gcf,'Fig2_pol_three_period23_bk.pdf','pdf');
+
+figure;
+plot(grid_a, a1_nl, '-o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('若年期の資産：a1', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a2', 'Fontsize', 16);
 xlim([0.0, 2.0]);
@@ -82,5 +93,16 @@ set(gca,'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_pol_three_period12.eps','epsc2');
 saveas (gcf,'Fig2_pol_three_period12.pdf','pdf');
+
+figure;
+plot(grid_a, a1_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の資産：a1', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a2', 'Fontsize', 16);
+xlim([0.0, 2.0]);
+ylim([0.0, 2.0]);
+set(gca,'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_pol_three_period12_bk.eps','epsc2');
+saveas (gcf,'Fig2_pol_three_period12_bk.pdf','pdf');
 
 return;

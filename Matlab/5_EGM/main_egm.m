@@ -59,8 +59,8 @@ a_cfs = coef2.*w;
 %% 図を描く
 
 figure;
-plot(w, grid_a, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(w, a_cfs, '-.', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+plot(w, grid_a, 'o', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(w, a_cfs, '-.', 'MarkerSize', 12, 'linewidth', 3); hold('off');
 xlabel('若年期の所得：w', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a', 'Fontsize', 16);
 xlim([0, 1.2]);
@@ -70,5 +70,18 @@ set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_pol_egm.eps','epsc2');
 saveas (gcf,'Fig2_pol_egm.pdf','pdf');
+
+figure;
+plot(w, grid_a, 'o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(w, a_cfs, '-.', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('off');
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, 1.2]);
+ylim([0, 0.5]);
+legend('EGM','解析的解','Location','NorthWest');
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_pol_egm_bk.eps','epsc2');
+saveas (gcf,'Fig2_pol_egm_bk.pdf','pdf');
 
 return;

@@ -63,12 +63,12 @@ end
 grid_zero = zeros(na,1);
 
 figure;
-plot(grid_a, resid1, '-', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
-plot(grid_a, resid2, '-.', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a, resid3, '--', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a, grid_zero,'-', 'color', 'black', 'linewidth', 1); hold('off');
+plot(grid_a, resid1, '-', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a, resid2, '-.', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, resid3, '--', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, grid_zero,'-', 'linewidth', 1); hold('off');
 xlabel('若年期の貯蓄：a', 'Fontsize', 16);
-ylabel('残差：R(w)', 'Fontsize', 16);
+ylabel('残差：R(a;w)', 'Fontsize', 16);
 xlim([0.1, 0.5]);
 ylim([-1, 1]);
 legend('w=0.5', 'w=0.8', 'w=1', 'Location', 'NorthEast');
@@ -76,6 +76,21 @@ set(gca,'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_resid.eps','epsc2');
 saveas (gcf,'Fig2_resid.pdf','pdf');
+
+figure;
+plot(grid_a, resid1, '-', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold('on');
+plot(grid_a, resid2, '-.', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, resid3, '--', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, grid_zero,'-', 'color', 'black', 'linewidth', 1); hold('off');
+xlabel('若年期の貯蓄：a', 'Fontsize', 16);
+ylabel('残差：R(a;w)', 'Fontsize', 16);
+xlim([0.1, 0.5]);
+ylim([-1, 1]);
+legend('w=0.5', 'w=0.8', 'w=1', 'Location', 'NorthEast');
+set(gca,'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_resid_bk.eps','epsc2');
+saveas (gcf,'Fig2_resid_bk.pdf','pdf');
 
 %% 非線形関数の根を探す関数を用いて残差をゼロにするaを探す
 
@@ -92,7 +107,7 @@ toc % 計算時間をカウント終了
 %% 図を描く
 
 figure;
-plot(grid_w, a_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_w, a_nl, '-o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('若年期の所得：w', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a', 'Fontsize', 16);
 xlim([0, w_max]);
@@ -101,5 +116,16 @@ set(gca, 'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_fzero.eps','epsc2');
 saveas (gcf,'Fig2_fzero.pdf','pdf');
+
+figure;
+plot(grid_w, a_nl, '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, w_max]);
+ylim([0, 0.5]);
+set(gca, 'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_fzero_bk.eps','epsc2');
+saveas (gcf,'Fig2_fzero_bk.pdf','pdf');
 
 return;

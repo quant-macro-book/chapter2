@@ -7,15 +7,15 @@ close all;
 format short;
 
 % グローバル変数：resid_three_period1.mと変数を共有
-global beta gamma tran endow rent ny a1 a2 y1 y2 y3 grid_a a2_nl e1 e2
+global beta gamma tran endow rent ny a1 a2 w1 w2 w3 grid_a a2_nl e1 e2
 
 %% *** カリブレーション ***
 beta  = 0.985.^20;     % 割引因子
 gamma = 2.0;           % 相対的危険回避度
 rent  = 1.025.^20-1.0; % 純利子率
-y1    = 1.0;           % 若年期の所得
-y2    = 1.2;           % 中年期の所得
-y3    = 0.4;           % 老年期の所得
+w1    = 1.0;           % 若年期の所得
+w2    = 1.2;           % 中年期の所得
+w3    = 0.4;           % 老年期の所得
 tran = [0.7451 0.2528 0.0021; 0.1360 0.7281 0.1360; 0.0021 0.2528 0.7451];
 endow = [0.8027, 1, 1.2457];
 %======================================
@@ -72,31 +72,59 @@ toc % 計算時間をカウント終了
 %% 図を描く
 
 figure;
-plot(grid_a, a2_nl(:, 1), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("on")
-plot(grid_a, a2_nl(:, 2), '-.d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a, a2_nl(:, 3), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("off")
+plot(grid_a, a2_nl(:, 3), '-o', 'MarkerSize', 12, 'linewidth', 3); hold("on")
+plot(grid_a, a2_nl(:, 2), '-.d', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a2_nl(:, 1), '--s', 'MarkerSize', 12, 'linewidth', 3); hold("off")
 xlabel('中年期の資産：a2', 'Fontsize', 16);
 ylabel('中年期の貯蓄：a3', 'Fontsize', 16);
 xlim([0.0, 2.0]);
 ylim([0.0, 2.0]);
-legend('y2=低', 'y2=中', 'y2=高', 'Location', 'NorthWest');
+legend('l2=高', 'l2=中', 'l2=低', 'Location', 'NorthWest');
 set(gca,'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_pol_three_period23_risk.eps','epsc2');
 saveas (gcf,'Fig2_pol_three_period23_risk.pdf','pdf');
 
 figure;
-plot(grid_a, a1_nl(:, 1), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("on")
-plot(grid_a, a1_nl(:, 2), '-.d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
-plot(grid_a, a1_nl(:, 3), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("off")
+plot(grid_a, a2_nl(:, 3), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("on")
+plot(grid_a, a2_nl(:, 2), '-.d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a2_nl(:, 1), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("off")
+xlabel('中年期の資産：a2', 'Fontsize', 16);
+ylabel('中年期の貯蓄：a3', 'Fontsize', 16);
+xlim([0.0, 2.0]);
+ylim([0.0, 2.0]);
+legend('l2=高', 'l2=中', 'l2=低', 'Location', 'NorthWest');
+set(gca,'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_pol_three_period23_risk_bk.eps','epsc2');
+saveas (gcf,'Fig2_pol_three_period23_risk_bk.pdf','pdf');
+
+figure;
+plot(grid_a, a1_nl(:, 3), '-o', 'MarkerSize', 12, 'linewidth', 3); hold("on")
+plot(grid_a, a1_nl(:, 2), '-.d', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a1_nl(:, 1), '--s', 'MarkerSize', 12, 'linewidth', 3); hold("off")
 xlabel('若年期の資産：a1', 'Fontsize', 16);
 ylabel('若年期の貯蓄：a2', 'Fontsize', 16);
 xlim([0.0, 2.0]);
 ylim([0.0, 2.0]);
-legend('y1=低', 'y1=中', 'y1=高', 'Location', 'NorthWest');
+legend('l1=高', 'l1=中', 'l1=低', 'Location', 'NorthWest');
 set(gca,'Fontsize', 16);
 grid on;
 saveas (gcf,'Fig2_pol_three_period12_risk.eps','epsc2');
 saveas (gcf,'Fig2_pol_three_period12_risk.pdf','pdf');
+
+figure;
+plot(grid_a, a1_nl(:, 3), '-o', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("on")
+plot(grid_a, a1_nl(:, 2), '-.d', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3);
+plot(grid_a, a1_nl(:, 1), '--s', 'color', 'black', 'MarkerEdgeColor', 'k', 'MarkerSize', 12, 'linewidth', 3); hold("off")
+xlabel('若年期の資産：a1', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a2', 'Fontsize', 16);
+xlim([0.0, 2.0]);
+ylim([0.0, 2.0]);
+legend('l1=高', 'l1=中', 'l1=低', 'Location', 'NorthWest');
+set(gca,'Fontsize', 16);
+grid on;
+saveas (gcf,'Fig2_pol_three_period12_risk_bk.eps','epsc2');
+saveas (gcf,'Fig2_pol_three_period12_risk_bk.pdf','pdf');
 
 return;
